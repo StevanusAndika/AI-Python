@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Usia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-md w-96">
+        <h1 class="text-2xl font-bold text-center mb-4">Hitung Usia</h1>
+
+        <form method="POST" action="/usia" class="space-y-4">
+            <div>
+                <label for="tahun_lahir" class="block text-sm font-medium text-gray-700">Tahun Lahir:</label>
+                <input type="number" id="tahun_lahir" name="tahun_lahir" required min="1900" max="2050 " 
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <button type="submit" 
+                class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">Hitung</button>
+        </form>
+
+        {% if usia is not none and usia > 0 %}
+            <div class="mt-4 p-4 bg-green-100 text-green-700 rounded-md">
+                <h2 class="text-lg font-semibold">Hasil</h2>
+                <p><strong>Tahun Lahir:</strong> {{ tahun_lahir }}</p>
+                <p><strong>Usia Anda:</strong> {{ usia }} tahun</p>
+                <p class="mt-2">{{ ai_output }}</p>
+            </div>
+        {% elif usia is not none and usia <= 0 %}
+            <div class="mt-4 p-4 bg-red-100 text-red-700 rounded-md">
+                <p>Masukkan tahun lahir yang valid</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
